@@ -35,7 +35,6 @@ export default BaseLayer.extend({
         run.schedule('actions', this, function() {
           //try to invoke/send an action for this event
           let actionName = eventName.split(':')[0] +  Ember.String.classify(eventName.split(':')[1]);
-          console.log(actionName);
           this.invokeAction(actionName, e);
         });
       };
