@@ -4,7 +4,6 @@ import BaseLayer from 'ember-leaflet/components/base-layer';
 const {get, run} = Ember;
 
 export default BaseLayer.extend({
-  // TODO add more measure options
   leafletOptions: [
     'position',
     'draw',
@@ -14,10 +13,6 @@ export default BaseLayer.extend({
   leafletEvents: [
     'draw:edited'
   ],
-
-  eventMethodMap: {
-    'save': 'save'
-  },
 
   layerSetup() {
     this._layer = this.createLayer();
