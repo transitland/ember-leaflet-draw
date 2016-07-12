@@ -7,6 +7,6 @@ module.exports = {
   },
 
   afterInstall: function(options) {
-    return this.addBowerPackageToProject('leaflet-draw', 'Leaflet/Leaflet.draw');
+    return this.addBowerPackageToProject('leaflet-draw', 'https://github.com/Leaflet/Leaflet.draw.git#*');
   }
 };

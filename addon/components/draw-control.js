@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import BaseLayer from 'ember-leaflet/components/base-layer';
 
-const {get} = Ember;
+const {get, run} = Ember;
 
 export default BaseLayer.extend({
   // TODO add more measure options
@@ -10,6 +10,14 @@ export default BaseLayer.extend({
     'draw',
     'edit'
   ],
+
+  leafletEvents: [
+    'draw:edited'
+  ],
+
+  eventMethodMap: {
+    'save': 'save'
+  },
 
   layerSetup() {
     this._layer = this.createLayer();
@@ -20,6 +28,24 @@ export default BaseLayer.extend({
     }
     this.didCreateLayer();
 	},
+
+  _addEventListeners() {
+    this.get('leafletEvents').forEach(eventName => {
+      let eventHandler = function(e) {
+        run.schedule('actions', this, function() {
+          //try to invoke/send an action for this event
+          let actionName = eventName.split(':')[0] +  Ember.String.classify(eventName.split(':')[1]);
+          console.log(actionName);
+          this.invokeAction(actionName, e);
+        });
+      };
+      get(this,'containerLayer')._layer.addEventListener(eventName, eventHandler, this);
+    });
+  },
+
+  _removeEventListeners() {
+    this._super();
+  },
 
   createLayer(){
 		return new this.L.Control.Draw(get(this, 'options'));
