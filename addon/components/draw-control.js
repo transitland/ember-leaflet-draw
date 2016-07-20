@@ -11,6 +11,10 @@ export default BaseLayer.extend({
   ],
 
   leafletEvents: [
+    'draw:editstart',
+    'draw:editmove',
+    'draw:editvertex',
+    'draw:editstop',
     'draw:edited'
   ],
 
@@ -29,8 +33,10 @@ export default BaseLayer.extend({
       let eventHandler = function(e) {
         run.schedule('actions', this, function() {
           //try to invoke/send an action for this event
-          let actionName = eventName.split(':')[0] +  Ember.String.classify(eventName.split(':')[1]);
-          this.invokeAction(actionName, e);
+          if (eventName.includes(":")) {
+            let actionName = eventName.split(':')[0] +  Ember.String.classify(eventName.split(':')[1]);
+            this.invokeAction(actionName, e);
+          }
         });
       };
       get(this,'containerLayer')._layer.addEventListener(eventName, eventHandler, this);
