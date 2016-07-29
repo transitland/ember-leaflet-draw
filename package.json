@@ -38,8 +38,8 @@
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.1",
-    "leaflet": "0.7.7",
-    "leaflet-draw": "0.3.0",
+    "leaflet": "0.7.2",
+    "leaflet-draw": "0.2.4",
     "loader.js": "^4.0.1"
   },
   "keywords": [
