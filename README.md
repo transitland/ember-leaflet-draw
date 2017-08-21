@@ -1,3 +1,5 @@
+***We no longer maintain this library. Instead we recommend you try https://github.com/StevenHeinrich/ember-leaflet-draw That's what we're now using with Transitland's EmberJS-based web apps.***
+
 # Ember-leaflet-draw
 
 This README outlines the details of collaborating on this Ember addon.
